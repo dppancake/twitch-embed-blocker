@@ -1,4 +1,4 @@
-# twitch-embed-blocker
+# Twitch Embed Blocker
 *A simple addon that blocks embedded Twitch streams on websites. No longer will unwanted Twitch streams auto play, when you are browsing wiki pages or other websites.*
 
 This extensions blocks Twitch streams that are embedded into websites, with the exception of twitch.tv itself. It prevents unwanted streams to open up or load in the background, when visiting a website.
@@ -9,3 +9,10 @@ I've created this for myself, because I hate embedded Twitch streams. However, I
 
 DISCLAIMER
 Twitch is a trademark of Twitch Interactive, Inc. or Amazon.com, Inc. or its affiliates registered in the U.S and other countries. This extension is an independent project. The extension and its developers are in no way affiliated.
+
+
+Firefox:
+[addons.mozilla.org/nl/firefox/addon/twitch-blocker]([https://duckduckgo.com](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
+
+Chrome:
+[addons.mozilla.org/nl/firefox/addon/twitch-blocker]([https://duckduckgo.com](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)

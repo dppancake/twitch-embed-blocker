@@ -12,7 +12,7 @@ Twitch is a trademark of Twitch Interactive, Inc. or Amazon.com, Inc. or its aff
 
 
 Firefox:
-[addons.mozilla.org/nl/firefox/addon/twitch-blocker]([https://duckduckgo.com](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
+[addons.mozilla.org/nl/firefox/addon/twitch-blocker](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
 
 Chrome:
-[addons.mozilla.org/nl/firefox/addon/twitch-blocker]([https://duckduckgo.com](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
+[addons.mozilla.org/nl/firefox/addon/twitch-blocker](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)

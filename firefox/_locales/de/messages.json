@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "Eine einfache Erweiterung, die eingebettete Twitch-Streams auf Websites blockiert. Unerwünschte Twitch-Streams werden nicht mehr automatisch abgespielt, wenn Sie Wiki-Seiten oder andere Websites durchsuchen."
+	},
+	"popup_description": {
+		"message": "Diese Erweiterung blockiert eingebettete Twitch-Streams auf Websites."
+	},
+	"popup_page_block": {
+		"message": "Auf dieser Seite blockiert"
+	},
+	"popup_lifetime_block": {
+		"message": "Blockiert seit der Installation"
+	},
+	"popup_streamer_block": {
+		"message": "Am häufigsten blockierter Streamer"
+	},
+	"popup_show_more": {
+		"message": "Mehr anzeigen"
+	},
+	"popup_show_less": {
+		"message": "Weniger anzeigen"
+	},
+	"popup_options_tooltip": {
+		"message": "Öffnen Sie das Optionsmenü"
+	},
+	"popup_script_on": {
+		"message": "Twitch Blocker entfernt derzeit Iframes und blockiert aktiv eingebettete Twitch-Streams"
+	},
+	"popup_script_off": {
+		"message": "Twitch Blocker ist derzeit für diese Website deaktiviert"
+	}
+}

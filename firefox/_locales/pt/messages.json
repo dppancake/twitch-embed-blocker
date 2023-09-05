@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "Uma extensão simples que bloqueia streams incorporados do Twitch em sites. Não mais reproduzirá automaticamente streams indesejados do Twitch ao navegar em páginas wiki ou outros sites."
+	},
+	"popup_description": {
+		"message": "Esta extensão bloqueia transmissões incorporadas do Twitch em sites."
+	},
+	"popup_page_block": {
+		"message": "Bloqueado nesta página"
+	},
+	"popup_lifetime_block": {
+		"message": "Bloqueado desde a instalação"
+	},
+	"popup_streamer_block": {
+		"message": "Streamer mais bloqueado"
+	},
+	"popup_show_more": {
+		"message": "Mostrar mais"
+	},
+	"popup_show_less": {
+		"message": "Mostrar menos"
+	},
+	"popup_options_tooltip": {
+		"message": "Abrir o menu de opções"
+	},
+	"popup_script_on": {
+		"message": "O Twitch Blocker está atualmente removendo iframes e bloqueando ativamente streams incorporados da Twitch"
+	},
+	"popup_script_off": {
+		"message": "O Twitch Blocker está atualmente desativado para este site"
+	}
+}

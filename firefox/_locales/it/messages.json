@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "Un'estensione semplice che blocca i flussi incorporati di Twitch su siti web. Non sarai più disturbato dalla riproduzione automatica di flussi Twitch indesiderati quando navighi su pagine wiki o altri siti web."
+	},
+	"popup_description": {
+		"message": "Questa estensione blocca i flussi di Twitch incorporati sui siti web."
+	},
+	"popup_page_block": {
+		"message": "Bloccato su questa pagina"
+	},
+	"popup_lifetime_block": {
+		"message": "Bloccato dall'installazione"
+	},
+	"popup_streamer_block": {
+		"message": "Streamer più bloccato"
+	},
+	"popup_show_more": {
+		"message": "Mostra di più"
+	},
+	"popup_show_less": {
+		"message": "Mostra di meno"
+	},
+	"popup_options_tooltip": {
+		"message": "Apri il menu delle opzioni"
+	},
+	"popup_script_on": {
+		"message": "Twitch Blocker sta attualmente rimuovendo gli iframe e bloccando attivamente gli stream Twitch incorporati"
+	},
+	"popup_script_off": {
+		"message": "Twitch Blocker è attualmente disabilitato per questo sito web"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "Een eenvoudige extensie die ingesloten Twitch-streams op websites blokkeert. Ongewenste Twitch-streams worden niet langer automatisch afgespeeld wanneer je wiki-pagina's of andere websites bezoekt."
+	},
+	"popup_description": {
+		"message": "Deze extensie blokkeert ingesloten Twitch-streams op websites."
+	},
+	"popup_page_block": {
+		"message": "Geblokkeerd op deze pagina"
+	},
+	"popup_lifetime_block": {
+		"message": "Geblokkeerd sinds installatie"
+	},
+	"popup_streamer_block": {
+		"message": "Meest geblokkeerde streamer"
+	},
+	"popup_show_more": {
+		"message": "Toon meer"
+	},
+	"popup_show_less": {
+		"message": "Toon minder"
+	},
+	"popup_options_tooltip": {
+		"message": "Open het optiemenu"
+	},
+	"popup_script_on": {
+		"message": "Twitch Blocker verwijdert momenteel iframes en blokkeert actief ingesloten Twitch-streams"
+	},
+	"popup_script_off": {
+		"message": "Twitch Blocker is momenteel uitgeschakeld voor deze website"
+	}
+}

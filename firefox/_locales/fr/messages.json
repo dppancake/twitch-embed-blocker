@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "Une extension simple qui bloque les flux Twitch intégrés sur les sites Web. Vous ne serez plus ennuyé par la lecture automatique de flux Twitch non désirés lorsque vous naviguez sur des pages wiki ou d'autres sites Web."
+	},
+	"popup_description": {
+		"message": "Cette extension bloque les diffusions Twitch intégrées sur les sites web."
+	},
+	"popup_page_block": {
+		"message": "Bloqué sur cette page"
+	},
+	"popup_lifetime_block": {
+		"message": "Bloqué depuis l'installation"
+	},
+	"popup_streamer_block": {
+		"message": "Stream le plus bloqué"
+	},
+	"popup_show_more": {
+		"message": "Afficher plus"
+	},
+	"popup_show_less": {
+		"message": "Afficher moins"
+	},
+	"popup_options_tooltip": {
+		"message": "Ouvrir le menu des options"
+	},
+	"popup_script_on": {
+		"message": "Twitch Blocker supprime actuellement les iframes et bloque activement les streams Twitch intégrés"
+	},
+	"popup_script_off": {
+		"message": "Twitch Blocker est actuellement désactivé pour ce site web"
+	}
+}

@@ -1,0 +1,161 @@
+    body {
+      font-family: Arial, sans-serif;
+      color: #ddd; /* Light text color */
+      background-color: #1f2326; /* Darker background color */
+	  max-width: 280px;
+	  overflow: hidden;
+    }
+	
+	/* Reset margins and padding for the body and footer bar */
+	body, .footer-bar {
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	.container {
+	  padding: 10px;
+	}
+
+	.header {
+	  display: flex;
+	  justify-content: center; /* Horizontally center content */
+	  align-items: center;
+	  margin-bottom: 15px;
+	  padding-bottom: 15px;
+	  border-bottom: 1px solid #444;
+	}
+
+	.logo {
+	  width: 52px;
+	  height: 52px;
+	  margin-right: 10px;
+	}
+
+	.title {
+	  font-size: 20px;
+	  color: #9146ff;
+	}
+
+    .description {
+      font-size: 14px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .icon-color {
+      color: #9146ff; /* Twitch purple color */
+    }
+
+    .website-info {	  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px; /* Adjust margin for spacing */
+      padding-bottom: 10px; /* Add padding for bottom border */
+      border-bottom: 1px solid #444; /* Add bottom border */
+      font-size: 16px;
+	  font-weight: bold;
+    }
+
+    .blocked-info {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .blocked-info-counter {
+      font-size: 16px;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* Footer Styles */
+	.footer-bar {
+	  background-color: #292d30; /* Darker background color */
+	  display: flex;
+	  justify-content: flex-start;
+	  align-items: center;
+      padding: 5px;
+	  width: 100%;
+	  border-top: 1px solid #444;
+	}
+
+	/* Style the options button */
+	.options-button {
+	  background-color: #9146ff; /* Twitch purple color */
+	  color: white;
+	  border: none;
+	  padding: 8px;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  margin-right: 10px; /* Add some spacing to the right */
+	}
+
+	/* Add a tooltip */
+	.options-button:hover::after {
+	  content: "Options"; /* Tooltip text */
+	  position: absolute;
+	  background-color: #333; /* Tooltip background color */
+	  color: white;
+	  padding: 5px;
+	  border-radius: 4px;
+	  top: 100%;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  white-space: nowrap;
+	}
+	
+	/* Style the "More" button */
+	.btn {
+	  background-color: #9146ff; /* Twitch purple color */
+	  color: white;
+	  border: none;
+	  padding: 10px;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  width: 100%; /* Full width of the footer bar */
+	  margin-top: 15px;
+	  margin-bottom: 15px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  transition: background-color 0.3s;
+	}
+
+	/* Style the "More" button on hover */
+	.btn:hover {
+	  background-color: #6f29b4; /* Slightly darker purple on hover */
+	}
+
+	
+	.hidden {
+	  display: none;
+	}
+
+    /* Media Queries for Responsive Design */
+    @media screen and (max-width: 600px) {
+      .logo {
+        margin-bottom: 10px;
+      }
+
+      .title {
+        font-size: 18px; /* Smaller title for small screens */
+      }
+
+      .icon-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .footer {
+        margin-top: 0;
+      }
+    }

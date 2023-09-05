@@ -1,0 +1,32 @@
+{
+	"app_description": {
+		"message": "A simple addon that blocks embedded Twitch streams on websites. No longer will unwanted Twitch streams auto play, when you are browsing wiki pages or other websites."
+	},
+	"popup_description": {
+		"message": "This extension blocks embedded Twitch streams on websites."
+	},
+	"popup_page_block": {
+		"message": "Blocked on this page"
+	},
+	"popup_lifetime_block": {
+		"message": "Blocked since installation"
+	},
+	"popup_streamer_block": {
+		"message": "Most blocked streamer"
+	},
+	"popup_show_more": {
+		"message": "Show more"
+	},
+	"popup_show_less": {
+		"message": "Show less"
+	},
+	"popup_options_tooltip": {
+		"message": "Open the options menu"
+	},
+	"popup_script_on": {
+		"message": "Twitch blocker is currently removing iframes and actively blocking embedded Twitch streams"
+	}, 
+	"popup_script_off": {
+		"message": "Twitch blocker is currently disabled for this website"
+	}
+}

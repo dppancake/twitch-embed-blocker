@@ -15,4 +15,4 @@ Firefox:
 [addons.mozilla.org/nl/firefox/addon/twitch-blocker](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
 
 Chrome:
-[addons.mozilla.org/nl/firefox/addon/twitch-blocker](https://addons.mozilla.org/nl/firefox/addon/twitch-blocker/)
+Will make a version for Chrome when I have the time.

@@ -7,6 +7,8 @@ By blocking embedded Twitch streams it will also prevent those streams from gain
 
 I've created this for myself, because I hate embedded Twitch streams. However, I thought why not share it with everbody else that might want this, so there you go.
 
+I will add features on demand and when I have the time for it.
+
 DISCLAIMER
 Twitch is a trademark of Twitch Interactive, Inc. or Amazon.com, Inc. or its affiliates registered in the U.S and other countries. This extension is an independent project. The extension and its developers are in no way affiliated.
 

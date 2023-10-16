@@ -3,6 +3,8 @@
 
 This extensions blocks Twitch streams that are embedded into websites, with the exception of twitch.tv itself. It prevents unwanted streams to open up or load in the background, when visiting a website.
 
+You can choose for yourself on which websites the extension should enforce the blocking by simply clicking the big on/off button in the popup menu.
+
 By blocking embedded Twitch streams it will also prevent those streams from gaining another "fake" viewer, therefore helping other streamers in the Twitch algorithm. Finally, and most importantly, it will also save you some bandwidth and FPS, if you are gaming and having a wiki with embedded streams open on your second monitor or in the background.
 
 I've created this for myself, because I hate embedded Twitch streams. However, I thought why not share it with everbody else that might want this, so there you go.

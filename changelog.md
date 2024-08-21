@@ -12,12 +12,12 @@ Features:
 
   - Added Minnit.org to the list of blocked domains, as it is commonly used alongside Fextralife. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
   - Introduced a configuration menu that allows users to manually edit the domains to be blocked.  -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
-  - Added placeholder favicon for domain list -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
+  - Added placeholder favicon for domain list -> [ee94597](https://github.com/dppancake/twitch-embed-blocker/commit/ee94597c8b44bd6a14a49905fa574febd570df35)
 
 Fixes:
 
   - Enhanced blocking functionality by continuously monitoring and re-checking for iframe embeds after the DOM has fully loaded. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
-  - Removed script injection for utils in favour of including it in a bundle. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
+  - Removed script injection for utils in favour of including it in a bundle. -> [ee94597](https://github.com/dppancake/twitch-embed-blocker/commit/ee94597c8b44bd6a14a49905fa574febd570df35)
 
 ## 1.3 (2023-09-04)
 

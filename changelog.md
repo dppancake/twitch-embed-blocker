@@ -6,16 +6,18 @@ More customization and blocking methods will come, when I have the time for it.
 
 Changes:
 
-  - Updated the statistics to track the most frequently blocked websites instead of the most blocked streams. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+  - Updated the statistics to track the most frequently blocked websites instead of the most blocked streams. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
 
 Features:
 
-  - Added Minnit.org to the list of blocked domains, as it is commonly used alongside Fextralife. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
-  - Introduced a configuration menu that allows users to manually edit the domains to be blocked.  -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+  - Added Minnit.org to the list of blocked domains, as it is commonly used alongside Fextralife. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
+  - Introduced a configuration menu that allows users to manually edit the domains to be blocked.  -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
+  - Added placeholder favicon for domain list -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
 
 Fixes:
 
-  - Enhanced blocking functionality by continuously monitoring and re-checking for iframe embeds after the DOM has fully loaded. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+  - Enhanced blocking functionality by continuously monitoring and re-checking for iframe embeds after the DOM has fully loaded. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
+  - Removed script injection for utils in favour of including it in a bundle. -> [390bbbd](https://github.com/dppancake/twitch-embed-blocker/commit/390bbbd86f36c689275121f1206ae99b26e8ee63)
 
 ## 1.3 (2023-09-04)
 

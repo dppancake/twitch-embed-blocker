@@ -1,59 +1,67 @@
 import { updateTranslatedText } from './popup_translations.js';
-import { getCurrentTabDomain } from '/utils.js';
 
+// Add an event listener to the DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", async function () {
+  // Select HTML elements
   const toggleButton = document.querySelector(".icon-container");
   const refreshButton = document.getElementById("refreshButton");
   const configureButton = document.getElementById("configureButton");
 
   const currentWebsiteText = document.getElementById("currentWebsite");
-
   const blockedStreamsOnPageElement = document.getElementById("blockedStreamsOnPage");
   const blockedTotalCountElement = document.getElementById("blockedTotalCount");
   const blockedWebsitesElement = document.getElementById("blockedWebsites");
 
-  // Initialize texts
+  // Initialize translated texts
   updateTranslatedText();
 
-  let scriptEnabled = true;
-  let requireRefresh = false;
-  let baseDomainIgnore = false;
-  let blockedStreamsOnPage = 0;
-  let intervalId;
-  
+  let scriptEnabled = true; // Flag to indicate if the script is enabled
+  let requireRefresh = false; // Flag to indicate if a page refresh is required
+  let baseDomainIgnore = false; // Flag to indicate if the base domain is to be ignored
+  let blockedStreamsOnPage = 0; // Count of blocked streams on the current page
+  let intervalId; // ID for the interval to update blocked stream info
+
+  // Get the current active tab
   const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  // Send a message to the content script to get the current state
   const currentStateResponse = await browser.tabs.sendMessage(tabs[0].id, { action: "getCurrentState" });
 
   if (currentStateResponse) {
     scriptEnabled = currentStateResponse.state;
     requireRefresh = currentStateResponse.refresh;
     baseDomainIgnore = currentStateResponse.baseDomainIgnore;
+
+    // Display the current website URL
+    currentWebsiteText.textContent = currentStateResponse.currentHost;
   }
 
-  // Set the current website url
-  currentWebsiteText.textContent = await getCurrentTabDomain();
+  // Update the icon based on the script state
+  updateIcon(scriptEnabled);
 
-  // Initialize icon state
-	updateIcon(scriptEnabled);
-
-  // Initialize the blocked streams info
+  // Initialize the blocked streams information
   await updateBlockedStreamInfo();
 
-  // Set interval for block stream information update
+  // Start an interval to periodically update blocked stream information
   startBlockedStreamUpdateInterval();
 
-  // Function to start the interval
+  /**
+   * Start the interval for updating blocked stream information.
+   * This function ensures that there is no active interval before setting up a new one.
+   */
   function startBlockedStreamUpdateInterval() {
     // Check if there's already an active interval
     if (intervalId) {
       return;
     }
 
-    // Set up the interval and save the ID
+    // Set up the interval to update blocked stream info every second
     intervalId = setInterval(updateBlockedStreamInfo, 1000);
   }
 
-  // Function to stop the interval
+  /**
+   * Stop the interval for updating blocked stream information.
+   * This function clears the interval and resets the intervalId.
+   */
   function stopBlockedStreamUpdateInterval() {
     // Check if there's an active interval
     if (!intervalId) {
@@ -65,8 +73,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     intervalId = null; // Reset intervalId to indicate no active interval
   }
 
+  /**
+   * Update the blocked stream information displayed in the popup.
+   * Fetches current blocked streams count, total blocked streams, and the most blocked website.
+   */
   async function updateBlockedStreamInfo() {
+    // Get the active tab
     const blockedStreamsTabs = await browser.tabs.query({ active: true, currentWindow: true });
+    // Send a message to get the number of blocked streams on the page
     const blockedStreamsCountResponse = await browser.tabs.sendMessage(blockedStreamsTabs[0].id, { action: "getBlockedStreamsCount" });
 
     if (blockedStreamsCountResponse && blockedStreamsCountResponse.action === "updateBlockedStreams") {
@@ -74,6 +88,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       blockedStreamsOnPage = blockedStreamsCountResponse.count;
     }
 
+    // Get the total blocked streams count
     const blockedTotal = await browser.tabs.query({ active: true, currentWindow: true });
     const blockedTotalResponse = await browser.tabs.sendMessage(blockedTotal[0].id, { action: "getblockedTotal" });
 
@@ -81,6 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       updateBlockStreamsTotal(blockedTotalResponse.count);
     }
 
+    // Get the most blocked website
     const mostBlockedWebsiteResponse = await browser.tabs.sendMessage(blockedTotal[0].id, { action: "getMostBlockedWebsite" });
 
     if (mostBlockedWebsiteResponse && mostBlockedWebsiteResponse.action === "updateMostBlockedWebsite") {
@@ -88,46 +104,59 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // Update the current blocked stream count for this page
-	function updateBlockStreamsOnPage(count) {
-	  blockedStreamsOnPageElement.textContent = count;
-	}
-	
-	// Update the current blocked stream life time count
-	function updateBlockStreamsTotal(count) {
-	  blockedTotalCountElement.textContent = count;
-	}
-	
-  // Update the most blocked streamer display
-	function updateMostBlockedWebsites(name, count) {
+  /**
+   * Update the displayed count of blocked streams on the current page.
+   * @param {number} count - The number of blocked streams to display.
+   */
+  function updateBlockStreamsOnPage(count) {
+    blockedStreamsOnPageElement.textContent = count;
+  }
+  
+  /**
+   * Update the displayed total count of blocked streams across all pages.
+   * @param {number} count - The total number of blocked streams to display.
+   */
+  function updateBlockStreamsTotal(count) {
+    blockedTotalCountElement.textContent = count;
+  }
+  
+  /**
+   * Update the display for the most blocked website.
+   * @param {string|null} name - The name of the most blocked website, or null if none.
+   * @param {number} count - The count of blocks for the most blocked website.
+   */
+  function updateMostBlockedWebsites(name, count) {
     if (name === null) {
       blockedWebsitesElement.textContent = "-";
       return;
     }
 
-	  blockedWebsitesElement.textContent = name + " (" + count + ")";
-	}
+    blockedWebsitesElement.textContent = name + " (" + count + ")";
+  }
 
-  // Update the icon based on the script state
+  /**
+   * Update the icon and its tooltip based on the script's state.
+   * @param {boolean} state - The state of the script (enabled/disabled).
+   */
   function updateIcon(state) {
     const icon = document.querySelector(".icon-color");
-	  const scriptToggleButton = document.getElementById("scriptToggleButton");
-	
-	  // Set the script toggle icon color
+    const scriptToggleButton = document.getElementById("scriptToggleButton");
+    
+    // Set the script toggle icon color
     icon.style.color = state ? "Mediumslateblue" : "DarkGray";
-	
-	  // Set the script toggle icon tooltip
-	  scriptToggleButton.title = state ? chrome.i18n.getMessage('__MSG_popup_script_on__') : chrome.i18n.getMessage('__MSG_popup_script_off__');
-	
-	  // Toggle the 'hidden' class for the refreshButton
+    
+    // Set the script toggle icon tooltip
+    scriptToggleButton.title = state ? chrome.i18n.getMessage('__MSG_popup_script_on__') : chrome.i18n.getMessage('__MSG_popup_script_off__');
+    
+    // Toggle visibility of the refresh button based on whether a refresh is required
     refreshButton.classList.toggle("hidden", !requireRefresh);
   }
 
   // Event listener for toggling the script state
   if (!baseDomainIgnore) {
     toggleButton.addEventListener("click", async function () {
-        // Call the function to update blocked stream info after toggling
-		    await updateBlockedStreamInfo();
+        // Update blocked stream info after toggling the script state
+        await updateBlockedStreamInfo();
         
         scriptEnabled = !scriptEnabled;
 
@@ -149,8 +178,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     toggleButton.style.cursor = "default";
   }
 
+  /**
+   * Handle the click event for the refresh button.
+   * Sends a message to reset the require_refresh variable and reloads the tab if needed.
+   */
   refreshButton.addEventListener("click", async () => {
-    // Send a message to content script to reset the require_refresh variable
     const refreshTabs = await browser.tabs.query({ active: true, currentWindow: true });
     const refreshTabsResponse = await browser.tabs.sendMessage(refreshTabs[0].id, { action: "refreshPage" });
     
@@ -160,13 +192,17 @@ document.addEventListener("DOMContentLoaded", async function () {
           const tabId = tabs[0].id;
           // Reload the tab
           browser.tabs.reload(tabId).then(function () {
-              // Close the popup window
+              // Close the popup window after reloading the tab
               window.close();
             });
         });
       }
   });
 
+  /**
+   * Handle the click event for the configure button.
+   * Opens the extension options page.
+   */
   configureButton.addEventListener("click", () => {
     browser.runtime.openOptionsPage();
   });

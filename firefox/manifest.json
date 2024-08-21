@@ -17,13 +17,14 @@
 	  "https://*/*"
   ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["background.js", "utils.js"],
+    "persistent": false,
+    "type": "module"
   },
   "content_scripts": [
 	  {
 		"matches": ["<all_urls>"],
-		"js": ["content.js"]
+		"js": ["content.js", "utils.js"]
 	  }
   ],
   "icons": {

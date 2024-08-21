@@ -1,48 +1,65 @@
 import { updateTranslatedText } from './options_translations.js';
 
+// Select HTML elements
 const domainListTextarea = document.getElementById('domainList');
 const addDomainButton = document.getElementById('addDomain');
 const domainListContainer = document.getElementById('domainListContainer');
 const resetButton = document.getElementById('resetButton');
 
-// Updated domain regex to allow subdomains
+// Regex for validating domain format, including subdomains
 const domainRegex = /^(?!:\/\/)([a-zA-Z0-9-_]+\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\.[a-zA-Z]{2,11}?$/;
 
+// Default domains to block
 const defaultDomains = [
   "player.twitch.tv",
   "embed.twitch.tv",
   "minnit.org"
 ];
 
-// Function to get favicon URL or return placeholder if not available
+/**
+ * Get the favicon URL for a given domain or return a placeholder if not available.
+ * @param {string} domain - The domain to get the favicon for.
+ * @returns {Promise<string>} - The favicon URL or a placeholder path.
+ */
 function getFaviconUrl(domain) {
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}`;
+  const faviconPlaceholder = "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://firefox.com&size=16"
   return fetch(faviconUrl).then(response => {
     if (response.ok) {
       return faviconUrl;
     } else {
-      return '/path/to/placeholder-favicon.png'; // Replace with the correct placeholder path
+      return faviconPlaceholder; // Replace with the correct placeholder path
     }
   }).catch(() => {
-    return '/path/to/placeholder-favicon.png'; // Replace with the correct placeholder path
+    return faviconPlaceholder; // Replace with the correct placeholder path
   });
 }
 
-// Load blocked domains from storage
+/**
+ * Load blocked domains from storage, returning default domains if none are found.
+ * @returns {Promise<string[]>} - The list of blocked domains.
+ */
 async function getBlockedDomains() {
   const { blockedDomains = [] } = await browser.storage.local.get('blockedDomains');
   return blockedDomains.length > 0 ? blockedDomains : defaultDomains;
 }
 
-// Function to check if the provided domain is already in the blocklist
+/**
+ * Check if a domain is already in the blocklist.
+ * @param {string[]} blockedDomains - The list of currently blocked domains.
+ * @param {string} newDomain - The domain to check for.
+ * @returns {boolean} - True if the domain is already blocked, false otherwise.
+ */
 function isDomainAlreadyBlocked(blockedDomains, newDomain) {
   return blockedDomains.some(blockedDomain => {
-    // Use a case-insensitive comparison to check if the new domain matches any blocked domain
+    // Case-insensitive comparison
     return blockedDomain.toLowerCase() === newDomain.toLowerCase();
   });
 }
 
-// Display the blocked domains in the options page with favicons and remove buttons
+/**
+ * Display the list of blocked domains on the options page, including favicons and remove buttons.
+ */
 async function displayBlockedDomains() {
   const blockedDomains = await getBlockedDomains();
   domainListContainer.innerHTML = '';
@@ -56,7 +73,7 @@ async function displayBlockedDomains() {
       ${defaultDomains.includes(domain) ? '' : '<button class="remove-btn" data-domain="' + domain + '">' + chrome.i18n.getMessage('__MSG_options_remove_domain_button__') + '</button>'}
     `;
 
-    // Attach remove button event handler
+    // Attach event handler for the remove button
     if (!defaultDomains.includes(domain)) {
       listItem.querySelector('.remove-btn').addEventListener('click', () => {
         removeDomain(domain);
@@ -67,7 +84,10 @@ async function displayBlockedDomains() {
   }
 }
 
-// Add a new domain to the blocked list
+/**
+ * Add new domains to the blocklist.
+ * Domains are read from the textarea and validated before being added.
+ */
 async function addDomain() {
   const newDomainsInput = domainListTextarea.value.trim();
   const newDomains = newDomainsInput.split(/\r?\n/);
@@ -90,7 +110,10 @@ async function addDomain() {
   displayBlockedDomains();
 }
 
-// Remove a domain from the blocked list
+/**
+ * Remove a specific domain from the blocklist.
+ * @param {string} domainToRemove - The domain to remove from the blocklist.
+ */
 async function removeDomain(domainToRemove) {
   let blockedDomains = await getBlockedDomains();
   blockedDomains = blockedDomains.filter(domain => domain !== domainToRemove);
@@ -99,17 +122,20 @@ async function removeDomain(domainToRemove) {
   displayBlockedDomains();
 }
 
-// Reset blocked domains to default
+/**
+ * Reset the blocklist to default domains.
+ */
 async function resetBlockedDomains() {
   await browser.storage.local.set({ blockedDomains: defaultDomains });
   displayBlockedDomains();
 }
 
-// Initialize the options page
+// Initialize the options page on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", async () => {
-  updateTranslatedText();
-  displayBlockedDomains();
+  updateTranslatedText(); // Update texts according to current language
+  displayBlockedDomains(); // Display the list of blocked domains
 
+  // Add event listeners for the add domain and reset buttons
   addDomainButton.addEventListener("click", addDomain);
   resetButton.addEventListener("click", resetBlockedDomains);
 });

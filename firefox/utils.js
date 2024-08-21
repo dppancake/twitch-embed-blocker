@@ -5,7 +5,7 @@
  * 
  * @returns {Promise<string>} - A promise that resolves to the domain of the current tab.
  */
-export function getCurrentTabDomain() {
+function getCurrentTabDomain() {
     return new Promise((resolve, reject) => {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (chrome.runtime.lastError) {
@@ -32,7 +32,7 @@ export function getCurrentTabDomain() {
  * @param {string} hostname - The full hostname.
  * @returns {string} - The base domain.
  */
-export function getBaseDomain(hostname) {
+function getBaseDomain(hostname) {
     const parts = hostname.split('.').reverse();
     if (parts.length > 1) {
       // For most cases, return the last two parts (e.g., example.com)
@@ -48,7 +48,7 @@ export function getBaseDomain(hostname) {
      * @param {Array<string>} blockedDomains - List of blocked domains.
      * @returns {boolean} - True if the current tab domain is in the list of blocked domains
      */
-    export function isTabDomainBlocked(domain, blockedDomains) {
+    function isTabDomainBlocked(domain, blockedDomains) {
         // Extract the base domain from the current domain
         const baseDomain = getBaseDomain(domain);
 
@@ -75,7 +75,7 @@ export function getBaseDomain(hostname) {
    * @param {string} src - The iframe src URL.
    * @returns {string} - The channel name, if available.
    */
-  export function getChannelFromSrc(src) {
+  function getChannelFromSrc(src) {
     return new URL(src).searchParams.get('channel');
   }
   
@@ -85,7 +85,7 @@ export function getBaseDomain(hostname) {
    * @param {Object} obj - The object to check.
    * @returns {string} - The key with the highest value.
    */
-  export function getKeyWithHighestValue(obj) {
+  function getKeyWithHighestValue(obj) {
     let highestValue = -Infinity;
     let keyWithHighestValue = null;
   

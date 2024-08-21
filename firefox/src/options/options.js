@@ -66,20 +66,38 @@ async function displayBlockedDomains() {
 
   for (const domain of blockedDomains) {
     const faviconUrl = await getFaviconUrl(domain);
+    
+    // Create elements manually to avoid using innerHTML
     const listItem = document.createElement('li');
-    listItem.innerHTML = `
-      <img src="${faviconUrl}" alt="" class="favicon">
-      <span>${domain}</span>
-      ${defaultDomains.includes(domain) ? '' : '<button class="remove-btn" data-domain="' + domain + '">' + chrome.i18n.getMessage('__MSG_options_remove_domain_button__') + '</button>'}
-    `;
 
-    // Attach event handler for the remove button
+    // Create and append the favicon image
+    const faviconImg = document.createElement('img');
+    faviconImg.src = faviconUrl;
+    faviconImg.alt = '';
+    faviconImg.className = 'favicon';
+    listItem.appendChild(faviconImg);
+
+    // Create and append the domain text
+    const domainSpan = document.createElement('span');
+    domainSpan.textContent = domain; // Using textContent to avoid XSS
+    listItem.appendChild(domainSpan);
+
+    // Create and append the remove button if necessary
     if (!defaultDomains.includes(domain)) {
-      listItem.querySelector('.remove-btn').addEventListener('click', () => {
+      const removeButton = document.createElement('button');
+      removeButton.className = 'remove-btn';
+      removeButton.dataset.domain = domain;
+      removeButton.textContent = chrome.i18n.getMessage('__MSG_options_remove_domain_button__');
+
+      // Attach event handler for the remove button
+      removeButton.addEventListener('click', () => {
         removeDomain(domain);
       });
+
+      listItem.appendChild(removeButton);
     }
 
+    // Append the list item to the container
     domainListContainer.appendChild(listItem);
   }
 }

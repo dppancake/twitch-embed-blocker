@@ -1,201 +1,224 @@
-// content.js
+console.log("Starting embed blocker...");
 
-let blockedStreams = 0; // Counter for blocked streams
-let blockedStreamsLife = 0; // Counter for blocked streams lifetime
-let blockedStreamers = {};
-let requireRefresh = false; // Flag for requiring a page refresh
-let initial_remove = true;
-
-// List of domains to block
-const blockedDomains = [
-  "player.twitch.tv",
-  "embed.twitch.tv",
-];
-
-// Load script state from storage for the current domain
-async function loadScriptState() {
-  const currentDomain = window.location.hostname;
-  
-  if (currentDomain === "www.twitch.tv") {
-    return false; // Disable the script for twitch.tv domain
-  }
-  
-  const { enabled } = await browser.storage.local.get("enabled");
-  const scriptEnabled = enabled && enabled[currentDomain] !== undefined ? enabled[currentDomain] : true;
-  
-  await updateScriptState(currentDomain, scriptEnabled);
-  
-  return scriptEnabled;
+async function loadUtils() {
+  const src = chrome.runtime.getURL("utils.js");
+  const utils = await import(src);
+  return utils;
 }
 
-// Function to update script state
-async function updateScriptState(domain, enabled) {
-  await browser.runtime.sendMessage({ action: "updateScriptState", domain: domain, enabled: enabled });
-}
+// Example usage:
+loadUtils().then(utils => {
+    let blockedStreams = 0;
+    let blockedTotal = 0;
+    let blockedWebsites = {};
+    let requireRefresh = false;
+    let initialRemove = true;
+    let baseDomainIgnore = false;
 
-// Load script data from storage
-async function loadDataFromStorage(initial) {
-  const { blocks_lifetime, blocked_streamers } = await browser.storage.local.get(["blocks_lifetime", "blocked_streamers"]);
-  
-  if (initial) {
-	blockedStreamsLife = (blocks_lifetime + blockedStreamsLife) || 0;
-	blockedStreamers = Object.keys({ ...blockedStreamers, ...blocked_streamers }).reduce((result, key) => {
-	  result[key] = (blockedStreamers[key] || 0) + (blocked_streamers[key] || 0);
-	  return result;
-	}, {});
+    const currentHostname = window.location.hostname;
 
-	// Now update the storage with the complete statistics
-	await updateStreamBlocksCount();
-	await browser.storage.local.set({ blocked_streamers: blockedStreamers });
-  } else {
-	blockedStreamsLife = blocks_lifetime;
-	blockedStreamers = blocked_streamers;
-  }
-}
+    const DEFAULT_DOMAINS = [
+      "player.twitch.tv",
+      "embed.twitch.tv",
+      "minnit.org"
+    ];
 
-// Remove embedded Twitch streams
-async function removeTwitchEmbeddedStreams() {
-  const iframes = document.querySelectorAll("iframe");
-  for (const iframe of iframes) {
-    const src = iframe.getAttribute("src");
-    if (src && isTwitchEmbeddedStream(src)) {
-      iframe.remove();
-      blockedStreams++;
-      blockedStreamsLife++;
-	  
-	  if (!initial_remove) {
-		  await updateStreamBlocksCount();
-	  }
-	  
-	  await updateStreamerBlockCount(src, !initial_remove);
+    let blockedDomainsList = [];
+
+    // Load blocked domains from storage, or use default domains
+    async function loadBlockedDomains() {
+      const { blockedDomains } = await browser.storage.local.get({ blockedDomains: DEFAULT_DOMAINS });
+      blockedDomainsList = blockedDomains;
     }
-  }
-}
 
+    // Load script state from storage for the current domain
+    async function loadScriptState(initial=false) {
+      await loadBlockedDomains();
+        
+      const { enabled } = await browser.storage.local.get("enabled");
+      scriptEnabled = enabled && enabled[currentHostname] !== undefined ? enabled[currentHostname] : true;
 
-// Function to check if a URL is a Twitch embedded stream
-function isTwitchEmbeddedStream(url) {
-  return blockedDomains.some((domain) => url.includes(domain));
-}
+      // Disable script when the current tab domain is in the blocklist. Shouldn't block twitch calls when on www.twitch.tv :)
+      if (utils.isTabDomainBlocked(currentHostname, blockedDomainsList)) {
+        if (initial) {
+          console.log(`Embed blocking is disabled because the current domain (${currentHostname}) is on the block list.`);
+        }
+        
+        scriptEnabled = false;
+        baseDomainIgnore = true;
+      } else {
+        if (initial) {
+          console.log(`Embed blocking for ${currentHostname} is ${scriptEnabled ? 'enabled' : 'disabled'}.`);
+        }
+      }
 
-// Update blocked stream counts in storage
-async function updateStreamBlocksCount() {
-  await browser.storage.local.set({ blocks_lifetime: blockedStreamsLife });
-}
+      await updateScriptState(currentHostname, scriptEnabled);
+      return scriptEnabled;
+    }
 
-// Parse the channel name from the iframe src
-function getChannelFromSrc(src) {
-  return new URL(src).searchParams.get('channel');
-}
+    // Function to update script state
+    async function updateScriptState(domain, enabled) {
+      await browser.runtime.sendMessage({ action: "updateScriptState", domain: domain, enabled: enabled });
+    }
 
-// Update blocked streamer count in storage
-async function updateStreamerBlockCount(src, store) {
-  const channel = getChannelFromSrc(src);
-  if (channel) {
-    blockedStreamers[channel] = blockedStreamers[channel] ? blockedStreamers[channel] + 1 : 1;
-	
-	if (store) {
-	   await browser.storage.local.set({ blocked_streamers: blockedStreamers });
-	}
-  }
-}
+    // Load data from storage
+    async function loadDataFromStorage(initial=false) {
+      const { blockedTotalSinceInstall, blockedWebsitesCount } = await browser.storage.local.get(["blockedTotalSinceInstall", "blockedWebsitesCount"]);
 
-// Toggle the script state for the current domain
-async function toggleScriptState() {
-  const currentDomain = window.location.hostname;
-  const { enabled } = await browser.storage.local.get("enabled");
-  
-  // Toggle the script state. If the storage returned undefined, make it default back to False.
-  // This is likely causes by browsing to a new/unknown domain that isn't present in the local storage yet.
-  const scriptEnabled = enabled && enabled[currentDomain] !== undefined ? !enabled[currentDomain] : false;
+      if (initial) {
+        blockedTotal = (blockedTotalSinceInstall + blockedTotal) || 0;
+        blockedWebsites = Object.keys({ ...blockedWebsites, ...blockedWebsitesCount }).reduce((result, key) => {
+          result[key] = (blockedWebsites[key] || 0) + (blockedWebsitesCount[key] || 0);
+          return result;
+        }, {});
 
-  const newEnabledState = {
-    ...enabled,
-    [currentDomain]: scriptEnabled,
-  };
-  
-  await browser.storage.local.set({ enabled: newEnabledState });
-  
-  if (scriptEnabled) {
-    removeTwitchEmbeddedStreams();
-  }
-  
-  await updateScriptState(currentDomain, scriptEnabled);
-}
-
-// Function to get the key of a JSON object with the highest value
-function getKeyWithHighestValue(obj) {
-  let highestValue = -Infinity;
-  let keyWithHighestValue = null;
-
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key) && typeof obj[key] === "number") {
-      if (obj[key] > highestValue) {
-        highestValue = obj[key];
-        keyWithHighestValue = key;
+        // Now update the storage with the complete statistics
+        await updateStreamBlocksCount();
+        await browser.storage.local.set({ blockedWebsitesCount: blockedWebsites });
+      } else {
+        blockedTotal = blockedTotalSinceInstall;
+        blockedWebsites = blockedWebsitesCount;
       }
     }
-  }
 
-  return keyWithHighestValue;
-}
+    // Remove embedded streams based on blocked domains
+    async function removeEmbeddedStreams() {
+      await loadBlockedDomains();
+      const iframes = document.querySelectorAll("iframe");
+      for (const iframe of iframes) {
+        const src = iframe.getAttribute("src");
+        if (src && isEmbeddedStream(src)) {
+          iframe.remove();
 
-// Remove Twitch streams as soon as iframes are added to the page
-const observer = new MutationObserver((mutationsList) => {
-  loadScriptState().then((scriptEnabled) => {
-	if (scriptEnabled) {
-	  for (const mutation of mutationsList) {
-		if (mutation.type === "childList") {
-		  removeTwitchEmbeddedStreams();
-		}
-	  }
-	}
-  });
-});
+          // Only increment the statistics on blocking after the first load
+          // Some websites, like fextralife, keep trying to restore the iframe, which would incredement the statistics exponantionally.
+          if (initialRemove) {
+            console.log(`Blocked iframe with src: ${src}`);
+            initialRemove = false;
 
-// Observe changes in the document's body
-observer.observe(document.body, { childList: true, subtree: true });
+            blockedStreams++;
+            blockedTotal++;
 
-// Initial removal of Twitch streams
-loadScriptState().then(async (scriptEnabled) => {
-  if (scriptEnabled) {
-    await removeTwitchEmbeddedStreams();
-  }
-  
-  if (initial_remove) {
-	await loadDataFromStorage(true);
-    initial_remove = false;
-  }
-});
+            await updateStreamBlocksCount();
+            await updateWebsiteBlockCount();
+          } 
+        }
+      }
+    }
 
-// Listen for messages from popup and respond accordingly
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "toggleScript") {
-    toggleScriptState().then(() => {
-      sendResponse({ action: "scriptToggled" });
-	  requireRefresh = message.refresh;
+    // Function to check if a URL is a Twitch embedded stream
+    function isEmbeddedStream(url) {
+      return blockedDomainsList.some((domain) => url.includes(domain));
+    }
+
+    // Update blocked stream counts in storage
+    async function updateStreamBlocksCount() {
+      await browser.storage.local.set({ blockedTotalSinceInstall: blockedTotal });
+    }
+
+    // Update blocked streamer count in storage
+    async function updateWebsiteBlockCount() {
+      if (currentHostname) {
+        blockedWebsites[currentHostname] = blockedWebsites[currentHostname] ? blockedWebsites[currentHostname] + 1 : 1;
+        await browser.storage.local.set({ blockedWebsitesCount: blockedWebsites });
+      }
+    }
+
+    // Toggle the script state for the current domain
+    async function toggleScriptState() {
+      const { enabled } = await browser.storage.local.get("enabled");
+
+      const scriptEnabled = enabled && enabled[currentHostname] !== undefined ? !enabled[currentHostname] : false;
+
+      const newEnabledState = {
+        ...enabled,
+        [currentHostname]: scriptEnabled,
+      };
+
+      await browser.storage.local.set({ enabled: newEnabledState });
+
+      if (scriptEnabled) {
+        removeEmbeddedStreams()
+          .then(() => {
+            observer.observe(document.body, { childList: true, subtree: true });
+          });
+      } else {
+        observer.disconnect(document.body, { childList: true, subtree: true });
+      }
+      
+      await updateScriptState(currentHostname, scriptEnabled);
+    }
+
+    // Function to check if new domains were added after launch
+    async function checkNewDomains() {
+      old_length = blockedDomainsList.length;
+
+      await loadBlockedDomains();
+
+      new_length = blockedDomainsList.length;
+
+      if (old_length !== new_length) {
+        removeEmbeddedStreams();
+      }
+    }
+
+    // Observe changes in the document's body
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          removeEmbeddedStreams();
+        }
+      }
     });
-	return true; // Important: Return true to indicate that you will send a response asynchronously
-  } else if (message.action === "getBlockedStreamsCount") {
-    sendResponse({ action: "updateBlockedStreams", count: blockedStreams });
-  } else if (message.action === "getBlockedStreamsLifeCount") {
-	loadDataFromStorage().then(() => {
-		sendResponse({ action: "updateBlockedLifeStreams", count: blockedStreamsLife });
-	});
-    return true; // Important: Return true to indicate that you will send a response asynchronously	
-  } else if (message.action === "getMostBlockedStreamer") {
-	loadDataFromStorage().then(() => {
-		const mostBlockedStreamer = getKeyWithHighestValue(blockedStreamers);
-		sendResponse({ action: "updateMostBlockedStreamer", name: mostBlockedStreamer, count: blockedStreamers[mostBlockedStreamer] });
-	});
-    return true; // Important: Return true to indicate that you will send a response asynchronously	
-  } else if (message.action === "getCurrentState") {
-    loadScriptState().then((scriptEnabled) => {
-      sendResponse({ action: "updateCurrentState", state: scriptEnabled, refresh: requireRefresh });
+
+    // Initial removal of streams
+    loadScriptState(true).then(async (scriptEnabled) => {
+      if (scriptEnabled) {
+        removeEmbeddedStreams()
+          .then(() => loadDataFromStorage(true)) // Ensure this runs after removeEmbeddedStreams
+          .then(() => {            
+            observer.observe(document.body, { childList: true, subtree: true });
+            console.log("Attached observer to check for streams being added after page load.");
+
+            setInterval(checkNewDomains, 2000);
+          });
+      }
     });
-    return true; // Important: Return true to indicate that you will send a response asynchronously
-  } else if (message.action === "refreshPage") {
-    requireRefresh = false;
-    sendResponse({ action: "updateRefreshState", state: requireRefresh });
-  }
+
+    // Listen for messages from popup and respond accordingly
+    browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === "toggleScript") {
+        toggleScriptState().then(() => {
+          sendResponse({ action: "scriptToggled" });
+          requireRefresh = message.refresh;
+        });
+        return true;
+      } else if (message.action === "getBlockedStreamsCount") {
+        sendResponse({ action: "updateBlockedStreams", count: blockedStreams });
+      } else if (message.action === "getblockedTotal") {
+        loadDataFromStorage().then(() => {
+          sendResponse({ action: "updateBlockedTotal", count: blockedTotal });
+        });
+        return true;
+      } else if (message.action === "getMostBlockedWebsite") {
+        loadDataFromStorage().then(() => {
+          const mostBlockedWebsite = utils.getKeyWithHighestValue(blockedWebsites);
+          sendResponse({ action: "updateMostBlockedWebsite", name: mostBlockedWebsite, count: blockedWebsites[mostBlockedWebsite] });
+        });
+        return true;
+      } else if (message.action === "getCurrentState") {
+        loadScriptState().then((scriptEnabled) => {
+          sendResponse({ action: "updateCurrentState", state: scriptEnabled, refresh: requireRefresh, base_domain_ignore: baseDomainIgnore });
+        });
+        return true;
+      } else if (message.action === "refreshPage") {
+        requireRefresh = false;
+        sendResponse({ action: "updateRefreshState", state: requireRefresh });
+      } else if (message.action === "updateBlockDomains") {
+        if (scriptEnabled) {
+          removeEmbeddedStreams()
+            .then(() => sendResponse({ action: "receivedBlockDomains" }));
+        }
+      }
+    });
 });

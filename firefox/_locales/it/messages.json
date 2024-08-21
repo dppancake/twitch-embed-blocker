@@ -1,32 +1,62 @@
 {
-	"app_description": {
-		"message": "Un'estensione semplice che blocca i flussi incorporati di Twitch su siti web. Non sarai più disturbato dalla riproduzione automatica di flussi Twitch indesiderati quando navighi su pagine wiki o altri siti web."
+	"__MSG_app_title__": {
+		"message": "Twitch Blocker"
 	},
-	"popup_description": {
-		"message": "Questa estensione blocca i flussi di Twitch incorporati sui siti web."
+	"__MSG_app_description__": {
+		"message": "Un semplice addon che blocca gli stream incorporati indesiderati sui siti web, come Twitch, Minnit, Kick e Rumble. Impedisce che questi stream vengano riprodotti automaticamente mentre navighi su diversi siti web."
 	},
-	"popup_page_block": {
+	"__MSG_popup_description__": {
+		"message": "Questa estensione blocca gli stream incorporati indesiderati sui siti web."
+	},
+	"__MSG_popup_page_block__": {
 		"message": "Bloccato su questa pagina"
 	},
-	"popup_lifetime_block": {
+	"__MSG_popup_lifetime_block__": {
 		"message": "Bloccato dall'installazione"
 	},
-	"popup_streamer_block": {
-		"message": "Streamer più bloccato"
+	"__MSG_popup_website_block__": {
+		"message": "Sito web più bloccato"
 	},
-	"popup_show_more": {
-		"message": "Mostra di più"
+	"__MSG_popup_script_on__": {
+		"message": "Il blocco degli stream sta attualmente rimuovendo i frame e bloccando attivamente gli stream incorporati indesiderati."
 	},
-	"popup_show_less": {
-		"message": "Mostra di meno"
+	"__MSG_popup_script_off__": {
+		"message": "Il blocco degli stream è attualmente disattivato per questo sito web."
 	},
-	"popup_options_tooltip": {
+	"__MSG_options_title__": {
+		"message": "Opzioni del Twitch Blocker"
+	},
+	"__MSG_popup_options_tooltip__": {
 		"message": "Apri il menu delle opzioni"
 	},
-	"popup_script_on": {
-		"message": "Twitch Blocker sta attualmente rimuovendo gli iframe e bloccando attivamente gli stream Twitch incorporati"
+	"__MSG_options_description__": {
+		"message": "Gestisci l'elenco dei domini che desideri bloccare. Puoi aggiungere o rimuovere domini secondo necessità. Per favore, aggiorna la pagina affinché le modifiche abbiano effetto."
 	},
-	"popup_script_off": {
-		"message": "Twitch Blocker è attualmente disabilitato per questo sito web"
+	"__MSG_options_blocked_domains__": {
+		"message": "Domini bloccati"
+	},
+	"__MSG_options_blocked_domains_placeholder__": {
+		"message": "Inserisci ogni dominio in una nuova riga..."
+	},
+	"__MSG_options_add_domain_button__": {
+		"message": "Aggiungi dominio"
+	},
+	"__MSG_options_remove_domain_button__": {
+		"message": "Rimuovi dominio"
+	},
+	"__MSG_options_reset_button__": {
+		"message": "Reimposta domini"
+	},
+	"__MSG_options_reset_description__": {
+		"message": "Facendo clic sul pulsante \"Reimposta domini\", i domini bloccati predefiniti verranno ripristinati e verranno rimossi eventuali domini personalizzati che hai aggiunto."
+	},
+	"__MSG_options_domains_list_header__": {
+		"message": "Elenco dei domini bloccati"
+	},
+	"__MSG_options_already_on_blocklist__": {
+		"message": "%s è già sulla lista di blocco!"
+	},
+	"__MSG_options_domains_invalid_format__": {
+		"message": "%s è un dominio non valido!"
 	}
 }

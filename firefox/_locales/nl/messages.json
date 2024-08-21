@@ -1,32 +1,62 @@
 {
-	"app_description": {
-		"message": "Een eenvoudige extensie die ingesloten Twitch-streams op websites blokkeert. Ongewenste Twitch-streams worden niet langer automatisch afgespeeld wanneer je wiki-pagina's of andere websites bezoekt."
+	"__MSG_app_title__": {
+		"message": "Twitch Blocker"
 	},
-	"popup_description": {
-		"message": "Deze extensie blokkeert ingesloten Twitch-streams op websites."
+	"__MSG_app_description__": {
+		"message": "Een eenvoudige addon die ongewenste ingesloten streams op websites blokkeert, zoals Twitch, Minnit, Kick en Rumble. Voorkomt dat deze streams automatisch worden afgespeeld wanneer je verschillende websites doorbladert."
 	},
-	"popup_page_block": {
+	"__MSG_popup_description__": {
+		"message": "Deze extensie blokkeert ongewenste ingesloten streams op websites."
+	},
+	"__MSG_popup_page_block__": {
 		"message": "Geblokkeerd op deze pagina"
 	},
-	"popup_lifetime_block": {
+	"__MSG_popup_lifetime_block__": {
 		"message": "Geblokkeerd sinds installatie"
 	},
-	"popup_streamer_block": {
-		"message": "Meest geblokkeerde streamer"
+	"__MSG_popup_website_block__": {
+		"message": "Meest geblokkeerde website"
 	},
-	"popup_show_more": {
-		"message": "Toon meer"
+	"__MSG_popup_script_on__": {
+		"message": "De stream-blocker verwijdert momenteel iFrames en blokkeert actief ongewenste ingesloten streams."
 	},
-	"popup_show_less": {
-		"message": "Toon minder"
+	"__MSG_popup_script_off__": {
+		"message": "De stream-blocker is momenteel uitgeschakeld voor deze website."
 	},
-	"popup_options_tooltip": {
-		"message": "Open het optiemenu"
+	"__MSG_options_title__": {
+		"message": "Twitch Blocker Opties"
 	},
-	"popup_script_on": {
-		"message": "Twitch Blocker verwijdert momenteel iframes en blokkeert actief ingesloten Twitch-streams"
+	"__MSG_popup_options_tooltip__": {
+		"message": "Open het opties-menu"
 	},
-	"popup_script_off": {
-		"message": "Twitch Blocker is momenteel uitgeschakeld voor deze website"
+	"__MSG_options_description__": {
+		"message": "Beheer de lijst met domeinen die u wilt blokkeren. U kunt domeinen naar behoefte toevoegen of verwijderen. Vernieuw de pagina om de wijzigingen door te voeren."
+	},
+	"__MSG_options_blocked_domains__": {
+		"message": "Geblokkeerde domeinen"
+	},
+	"__MSG_options_blocked_domains_placeholder__": {
+		"message": "Voer elk domein op een nieuwe regel in..."
+	},
+	"__MSG_options_add_domain_button__": {
+		"message": "Domein toevoegen"
+	},
+	"__MSG_options_remove_domain_button__": {
+		"message": "Domein verwijderen"
+	},
+	"__MSG_options_reset_button__": {
+		"message": "Domeinen herstellen"
+	},
+	"__MSG_options_reset_description__": {
+		"message": "Door op de knop \"Domeinen herstellen\" te klikken, worden de standaard geblokkeerde domeinen hersteld en worden eventuele door u toegevoegde aangepaste domeinen verwijderd."
+	},
+	"__MSG_options_domains_list_header__": {
+		"message": "Lijst van geblokkeerde domeinen"
+	},
+	"__MSG_options_already_on_blocklist__": {
+		"message": "%s staat al op de bloklijst!"
+	},
+	"__MSG_options_domains_invalid_format__": {
+		"message": "%s is een ongeldig domein!"
 	}
 }

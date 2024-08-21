@@ -1,5 +1,22 @@
 # CHANGELOG.md
 
+## 1.4 (2024-08-21)
+This update brings increased flexibility to the Twitch Blocker. With the growing number of streaming services embedded across various websites, which have similar effects to Twitch, I have expanded the blocker to handle a wider range of domains and blocking methods.
+More customization and blocking methods will come, when I have the time for it.
+
+Changes:
+
+  - Updated the statistics to track the most frequently blocked websites instead of the most blocked streams. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+
+Features:
+
+  - Added Minnit.org to the list of blocked domains, as it is commonly used alongside Fextralife. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+  - Introduced a configuration menu that allows users to manually edit the domains to be blocked.  -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+
+Fixes:
+
+  - Enhanced blocking functionality by continuously monitoring and re-checking for iframe embeds after the DOM has fully loaded. -> [feb73c5](https://github.com/dppancake/twitch-embed-blocker/commit/feb73c524a0dc42ae00a6a74fb0b95c0ba5943c3)
+
 ## 1.3 (2023-09-04)
 
 Features:

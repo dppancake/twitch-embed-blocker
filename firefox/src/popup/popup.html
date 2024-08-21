@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Twitch Blocker</title>
+  <title>__MSG_app_title__</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="/src/popup/popup.css">
 </head>
 <body>
   <div class="container">
 	  <div class="header">
-		<img src="icons/icon.png" alt="Extension Logo" class="logo">
-		<div class="title">Twitch Blocker</div>
+		<img src="/icons/icon.png" alt="Extension Logo" class="logo">
+		<div class="title">__MSG_app_title__</div>
 	  </div>
 	  <div class="description"></div>
 	  <div class="icon-container">
@@ -24,25 +24,23 @@
 		<span id="currentWebsite"></span>
 	  </div>
 	  <div class="blocked-info">
-		<span id="blockedStreamsText"></span>
-		<span id="blockedStreamsCount" class="blocked-info-counter">0</span>
+		<span id="blockedStreamsOnPageText"></span>
+		<span id="blockedStreamsOnPage" class="blocked-info-counter">0</span>
 	  </div>
 	  <div class="blocked-info">
-		<span id="blockedStreamsLifeCountText"></span>
-		<span id="blockedStreamsLifeCount" class="blocked-info-counter">0</span>
+		<span id="blockedTotalCountText"></span>
+		<span id="blockedTotalCount" class="blocked-info-counter">0</span>
 	  </div>
 	  <div class="blocked-info">
-		<span id="blockedStreamerText"></span>
-		<span id="blockedStreamerCount" class="blocked-info-counter">_</span>
+		<span id="blockedWebsitesText"></span>
+		<span id="blockedWebsites" class="blocked-info-counter">_</span>
 	  </div>
-	  <button id="moreButton" class="btn hidden"></button>
   </div>
-  <div class="footer-bar hidden">
-	  <button class="options-button" title="Options Menu">
+  <div class="footer-bar">
+	  <button id="configureButton" class="options-button" title="Options Menu">
 		<i class="fas fa-cogs"></i>
 	  </button>
 	</div>
-  <script src="popup.js"></script>
-  <script src="popup_translations.js"></script>
+	<script type="module" src="/src/popup/popup.js"></script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">__MSG_options_title__</title>
+    <link rel="stylesheet" href="/src/options/options.css">
+    <link rel="icon" href="/icons/icon-16.png" type="image/png"> <!-- Favicon -->
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="/icons/icon-48.png" alt="StreamBlocker Logo" class="logo">
+            <h1 class="title" id="headerTitle">__MSG_options_title__</h1>
+        </header>
+
+        <section class="blocked-domains-section">
+            <h2 class="section-title" id="blockedDomainsTitle">__MSG_options_blocked_domains__</h2>
+            <p class="description" id="domainsDescription">__MSG_options_description__</p>
+            <div class="domain-manager">
+                <textarea id="domainList" placeholder="__MSG_options_blocked_domains_placeholder__"></textarea>
+                <button id="addDomain" class="btn" aria-label="Add Domain">__MSG_options_add_domain_button__</button>
+            </div>
+            <ul id="domainListContainer"></ul>
+        </section>        
+
+        <!-- Hide other settings section -->
+        <section id="otherSettings" class="hidden">
+            <!-- Future settings will be added here -->
+        </section>
+        <hr>
+        <section id="resetSection" class="reset-section">
+            <p id="resetDescription" class="info-text">__MSG_options_reset_description__</p>
+        </section>
+
+        <footer class="footer-bar">
+            <button id="resetButton" class="btn" aria-label="Reset Domains">__MSG_options_reset_button__</button>
+        </footer>
+    </div>
+    <script type="module" src="/src/options/options.js"></script>
+</body>
+</html>

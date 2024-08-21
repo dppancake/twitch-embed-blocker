@@ -1,32 +1,62 @@
 {
-	"app_description": {
-		"message": "Eine einfache Erweiterung, die eingebettete Twitch-Streams auf Websites blockiert. Unerwünschte Twitch-Streams werden nicht mehr automatisch abgespielt, wenn Sie Wiki-Seiten oder andere Websites durchsuchen."
+	"__MSG_app_title__": {
+		"message": "Twitch Blocker"
 	},
-	"popup_description": {
-		"message": "Diese Erweiterung blockiert eingebettete Twitch-Streams auf Websites."
+	"__MSG_app_description__": {
+		"message": "Ein einfaches Addon, das unerwünschte eingebettete Streams auf Websites blockiert, wie z.B. Twitch, Minnit, Kick und Rumble. Verhindert, dass diese Streams beim Durchblättern verschiedener Websites automatisch abgespielt werden."
 	},
-	"popup_page_block": {
+	"__MSG_popup_description__": {
+		"message": "Dieses Addon blockiert unerwünschte eingebettete Streams auf Websites."
+	},
+	"__MSG_popup_page_block__": {
 		"message": "Auf dieser Seite blockiert"
 	},
-	"popup_lifetime_block": {
-		"message": "Blockiert seit der Installation"
+	"__MSG_popup_lifetime_block__": {
+		"message": "Seit Installation blockiert"
 	},
-	"popup_streamer_block": {
-		"message": "Am häufigsten blockierter Streamer"
+	"__MSG_popup_website_block__": {
+		"message": "Meist blockierte Website"
 	},
-	"popup_show_more": {
-		"message": "Mehr anzeigen"
+	"__MSG_popup_script_on__": {
+		"message": "Der Stream-Blocker entfernt derzeit iFrames und blockiert aktiv unerwünschte eingebettete Streams."
 	},
-	"popup_show_less": {
-		"message": "Weniger anzeigen"
+	"__MSG_popup_script_off__": {
+		"message": "Der Stream-Blocker ist derzeit für diese Website deaktiviert."
 	},
-	"popup_options_tooltip": {
-		"message": "Öffnen Sie das Optionsmenü"
+	"__MSG_options_title__": {
+		"message": "Twitch Blocker Optionen"
 	},
-	"popup_script_on": {
-		"message": "Twitch Blocker entfernt derzeit Iframes und blockiert aktiv eingebettete Twitch-Streams"
+	"__MSG_popup_options_tooltip__": {
+		"message": "Öffne das Optionen-Menü"
 	},
-	"popup_script_off": {
-		"message": "Twitch Blocker ist derzeit für diese Website deaktiviert"
+	"__MSG_options_description__": {
+		"message": "Verwalten Sie die Liste der Domains, die Sie blockieren möchten. Sie können nach Bedarf Domains hinzufügen oder entfernen. Bitte aktualisieren Sie die Seite, damit die Änderungen wirksam werden."
+	},
+	"__MSG_options_blocked_domains__": {
+		"message": "Blockierte Domains"
+	},
+	"__MSG_options_blocked_domains_placeholder__": {
+		"message": "Geben Sie jede Domain in einer neuen Zeile ein..."
+	},
+	"__MSG_options_add_domain_button__": {
+		"message": "Domain hinzufügen"
+	},
+	"__MSG_options_remove_domain_button__": {
+		"message": "Domain entfernen"
+	},
+	"__MSG_options_reset_button__": {
+		"message": "Domains zurücksetzen"
+	},
+	"__MSG_options_reset_description__": {
+		"message": "Durch Klicken auf die Schaltfläche \"Domains zurücksetzen\" werden die standardmäßig blockierten Domains wiederhergestellt und alle von Ihnen hinzugefügten benutzerdefinierten Domains entfernt."
+	},
+	"__MSG_options_domains_list_header__": {
+		"message": "Liste der blockierten Domains"
+	},
+	"__MSG_options_already_on_blocklist__": {
+		"message": "%s steht bereits auf der Blockliste!"
+	},
+	"__MSG_options_domains_invalid_format__": {
+		"message": "%s ist eine ungültige Domain!"
 	}
 }

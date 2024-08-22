@@ -1,62 +1,62 @@
 {
-	"__MSG_app_title__": {
+	"app_title": {
 		"message": "Twitch Blocker"
 	},
-	"__MSG_app_description__": {
+	"app_description": {
 		"message": "Ein einfaches Addon, das unerwünschte eingebettete Streams auf Websites blockiert, wie z.B. Twitch, Minnit, Kick und Rumble. Verhindert, dass diese Streams beim Durchblättern verschiedener Websites automatisch abgespielt werden."
 	},
-	"__MSG_popup_description__": {
+	"popup_description": {
 		"message": "Dieses Addon blockiert unerwünschte eingebettete Streams auf Websites."
 	},
-	"__MSG_popup_page_block__": {
+	"popup_page_block": {
 		"message": "Auf dieser Seite blockiert"
 	},
-	"__MSG_popup_lifetime_block__": {
+	"popup_lifetime_block": {
 		"message": "Seit Installation blockiert"
 	},
-	"__MSG_popup_website_block__": {
+	"popup_website_block": {
 		"message": "Meist blockierte Website"
 	},
-	"__MSG_popup_script_on__": {
+	"popup_script_on": {
 		"message": "Der Stream-Blocker entfernt derzeit iFrames und blockiert aktiv unerwünschte eingebettete Streams."
 	},
-	"__MSG_popup_script_off__": {
+	"popup_script_off": {
 		"message": "Der Stream-Blocker ist derzeit für diese Website deaktiviert."
 	},
-	"__MSG_options_title__": {
+	"options_title": {
 		"message": "Twitch Blocker Optionen"
 	},
-	"__MSG_popup_options_tooltip__": {
+	"popup_options_tooltip": {
 		"message": "Öffne das Optionen-Menü"
 	},
-	"__MSG_options_description__": {
+	"options_description": {
 		"message": "Verwalten Sie die Liste der Domains, die Sie blockieren möchten. Sie können nach Bedarf Domains hinzufügen oder entfernen. Bitte aktualisieren Sie die Seite, damit die Änderungen wirksam werden."
 	},
-	"__MSG_options_blocked_domains__": {
+	"options_blocked_domains": {
 		"message": "Blockierte Domains"
 	},
-	"__MSG_options_blocked_domains_placeholder__": {
+	"options_blocked_domains_placeholder": {
 		"message": "Geben Sie jede Domain in einer neuen Zeile ein..."
 	},
-	"__MSG_options_add_domain_button__": {
+	"options_add_domain_button": {
 		"message": "Domain hinzufügen"
 	},
-	"__MSG_options_remove_domain_button__": {
+	"options_remove_domain_button": {
 		"message": "Domain entfernen"
 	},
-	"__MSG_options_reset_button__": {
+	"options_reset_button": {
 		"message": "Domains zurücksetzen"
 	},
-	"__MSG_options_reset_description__": {
+	"options_reset_description": {
 		"message": "Durch Klicken auf die Schaltfläche \"Domains zurücksetzen\" werden die standardmäßig blockierten Domains wiederhergestellt und alle von Ihnen hinzugefügten benutzerdefinierten Domains entfernt."
 	},
-	"__MSG_options_domains_list_header__": {
+	"options_domains_list_header": {
 		"message": "Liste der blockierten Domains"
 	},
-	"__MSG_options_already_on_blocklist__": {
+	"options_already_on_blocklist": {
 		"message": "%s steht bereits auf der Blockliste!"
 	},
-	"__MSG_options_domains_invalid_format__": {
+	"options_domains_invalid_format": {
 		"message": "%s ist eine ungültige Domain!"
 	}
 }

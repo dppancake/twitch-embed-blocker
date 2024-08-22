@@ -87,7 +87,7 @@ async function displayBlockedDomains() {
       const removeButton = document.createElement('button');
       removeButton.className = 'remove-btn';
       removeButton.dataset.domain = domain;
-      removeButton.textContent = chrome.i18n.getMessage('__MSG_options_remove_domain_button__');
+      removeButton.textContent = chrome.i18n.getMessage('options_remove_domain_button');
 
       // Attach event handler for the remove button
       removeButton.addEventListener('click', () => {
@@ -119,10 +119,10 @@ async function addDomain() {
         await browser.storage.local.set({ blockedDomains });
         domainListTextarea.value = ''; // Clear the textarea after adding
       } else {
-        alert(chrome.i18n.getMessage('__MSG_options_already_on_blocklist__').replace("%s", newDomain));
+        alert(chrome.i18n.getMessage('options_already_on_blocklist').replace("%s", newDomain));
       }
     } else {
-      alert(chrome.i18n.getMessage('__MSG_options_domains_invalid_format__').replace("%s", newDomain));
+      alert(chrome.i18n.getMessage('options_domains_invalid_format').replace("%s", newDomain));
     }
   }
   displayBlockedDomains();

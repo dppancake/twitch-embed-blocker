@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     icon.style.color = state ? "Mediumslateblue" : "DarkGray";
     
     // Set the script toggle icon tooltip
-    scriptToggleButton.title = state ? chrome.i18n.getMessage('__MSG_popup_script_on__') : chrome.i18n.getMessage('__MSG_popup_script_off__');
+    scriptToggleButton.title = state ? chrome.i18n.getMessage('popup_script_on') : chrome.i18n.getMessage('popup_script_off');
     
     // Toggle visibility of the refresh button based on whether a refresh is required
     refreshButton.classList.toggle("hidden", !requireRefresh);

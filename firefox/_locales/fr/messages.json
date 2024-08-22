@@ -1,62 +1,62 @@
 {
-	"__MSG_app_title__": {
+	"app_title": {
 		"message": "Twitch Blocker"
 	},
-	"__MSG_app_description__": {
+	"app_description": {
 		"message": "Un addon simple qui bloque les streams intégrés indésirables sur les sites web, tels que Twitch, Minnit, Kick et Rumble. Empêche ces streams de se lancer automatiquement lorsque vous naviguez sur différents sites web."
 	},
-	"__MSG_popup_description__": {
+	"popup_description": {
 		"message": "Cette extension bloque les streams intégrés indésirables sur les sites web."
 	},
-	"__MSG_popup_page_block__": {
+	"popup_page_block": {
 		"message": "Bloqué sur cette page"
 	},
-	"__MSG_popup_lifetime_block__": {
+	"popup_lifetime_block": {
 		"message": "Bloqué depuis l'installation"
 	},
-	"__MSG_popup_website_block__": {
+	"popup_website_block": {
 		"message": "Site web le plus bloqué"
 	},
-	"__MSG_popup_script_on__": {
+	"popup_script_on": {
 		"message": "Le bloqueur de streams est actuellement en train de supprimer les iFrames et de bloquer activement les streams intégrés indésirables."
 	},
-	"__MSG_popup_script_off__": {
+	"popup_script_off": {
 		"message": "Le bloqueur de streams est actuellement désactivé pour ce site web."
 	},
-	"__MSG_options_title__": {
+	"options_title": {
 		"message": "Options du Twitch Blocker"
 	},
-	"__MSG_popup_options_tooltip__": {
+	"popup_options_tooltip": {
 		"message": "Ouvrir le menu des options"
 	},
-	"__MSG_options_description__": {
+	"options_description": {
 		"message": "Gérez la liste des domaines que vous souhaitez bloquer. Vous pouvez ajouter ou supprimer des domaines selon vos besoins. Veuillez actualiser la page pour que les modifications prennent effet."
 	},
-	"__MSG_options_blocked_domains__": {
+	"options_blocked_domains": {
 		"message": "Domaines bloqués"
 	},
-	"__MSG_options_blocked_domains_placeholder__": {
+	"options_blocked_domains_placeholder": {
 		"message": "Entrez chaque domaine sur une nouvelle ligne..."
 	},
-	"__MSG_options_add_domain_button__": {
+	"options_add_domain_button": {
 		"message": "Ajouter un domaine"
 	},
-	"__MSG_options_remove_domain_button__": {
+	"options_remove_domain_button": {
 		"message": "Supprimer un domaine"
 	},
-	"__MSG_options_reset_button__": {
+	"options_reset_button": {
 		"message": "Réinitialiser les domaines"
 	},
-	"__MSG_options_reset_description__": {
+	"options_reset_description": {
 		"message": "En cliquant sur le bouton \"Réinitialiser les domaines\", les domaines bloqués par défaut seront restaurés et tous les domaines personnalisés que vous avez ajoutés seront supprimés."
 	},
-	"__MSG_options_domains_list_header__": {
+	"options_domains_list_header": {
 		"message": "Liste des domaines bloqués"
 	},
-	"__MSG_options_already_on_blocklist__": {
+	"options_already_on_blocklist": {
 		"message": "%s est déjà sur la liste de blocage !"
 	},
-	"__MSG_options_domains_invalid_format__": {
+	"options_domains_invalid_format": {
 		"message": "%s est un domaine invalide !"
 	}
 }

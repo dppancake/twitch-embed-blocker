@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Twitch Blocker",
-  "version": "1.4",
+  "name": "__MSG_app_title__",
+  "version": "1.5",
   "description": "__MSG_app_description__",
   "default_locale": "en",
   "homepage_url": "https://github.com/dppancake/twitch-embed-blocker",
@@ -34,7 +34,7 @@
   },
   "browser_action": {
     "default_popup": "src/popup/popup.html",
-	"default_title": "Twitch Blocker",
+	"default_title": "__MSG_app_title__",
     "default_icon": {
       "19": "icons/icon-19.png",
       "38": "icons/icon-38.png"

@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 1.5 (2024-08-22)
+Made some changes to the localization and format of the text strings.
+
+
 ## 1.4 (2024-08-21)
 This update brings increased flexibility to the Twitch Blocker. With the growing number of streaming services embedded across various websites, which have similar effects to Twitch, I have expanded the blocker to handle a wider range of domains and blocking methods.
 More customization and blocking methods will come, when I have the time for it.

@@ -1,62 +1,62 @@
 {
-	"__MSG_app_title__": {
+	"app_title": {
 		"message": "Twitch Blocker"
 	},
-	"__MSG_app_description__": {
+	"app_description": {
 		"message": "A simple addon that blocks unwanted embedded streams on websites, such as Twitch, Minnt, Kick, and Rumble. Prevents these streams from auto-playing when you browse different websites."
 	},
-	"__MSG_popup_description__": {
+	"popup_description": {
 		"message": "This extension blocks unwanted embedded streams on websites."
 	},
-	"__MSG_popup_page_block__": {
+	"popup_page_block": {
 		"message": "Blocked on this page"
 	},
-	"__MSG_popup_lifetime_block__": {
+	"popup_lifetime_block": {
 		"message": "Blocked since installation"
 	},
-	"__MSG_popup_website_block__": {
+	"popup_website_block": {
 		"message": "Most blocked website"
 	},
-	"__MSG_popup_script_on__": {
+	"popup_script_on": {
 		"message": "Stream blocker is currently removing iframes and actively blocking unwanted embedded streams."
 	},
-	"__MSG_popup_script_off__": {
+	"popup_script_off": {
 		"message": "Stream blocker is currently disabled for this website."
 	},
-	"__MSG_options_title__": {
+	"options_title": {
 		"message": "Twitch Blocker Options"
 	},
-	"__MSG_popup_options_tooltip__": {
+	"popup_options_tooltip": {
 		"message": "Open the options menu"
 	},
-	"__MSG_options_description__": {
+	"options_description": {
 		"message": "Manage the list of domains you want to block. You can add or remove domains as needed. Please refresh the page for the changes to take effect."
 	},
-	"__MSG_options_blocked_domains__": {
+	"options_blocked_domains": {
 		"message": "Blocked Domains"
 	},
-	"__MSG_options_blocked_domains_placeholder__": {
+	"options_blocked_domains_placeholder": {
 		"message": "Enter each domain on a new line..."
 	},
-	"__MSG_options_add_domain_button__": {
+	"options_add_domain_button": {
 		"message": "Add Domain"
 	},
-	"__MSG_options_remove_domain_button__": {
+	"options_remove_domain_button": {
 		"message": "Remove Domain"
 	},
-	"__MSG_options_reset_button__": {
+	"options_reset_button": {
 		"message": "Reset Domains"
 	},
-	"__MSG_options_reset_description__": {
+	"options_reset_description": {
 		"message": "Clicking the \"Reset Domains\" button will restore the default blocked domains and remove any custom domains you have added."
 	},
-	"__MSG_options_domains_list_header__": {
+	"options_domains_list_header": {
 		"message": "List of Blocked Domains"
 	},
-	"__MSG_options_already_on_blocklist__": {
+	"options_already_on_blocklist": {
 		"message": "%s is already on the blocklist!"
 	},
-	"__MSG_options_domains_invalid_format__": {
+	"options_domains_invalid_format": {
 		"message": "%s is a invalid domain!"
 	}
 }
